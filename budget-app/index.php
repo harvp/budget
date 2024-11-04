@@ -13,7 +13,7 @@
     <?php
     // Fetch subaccounts and transactions from the database
     require 'db_connection.php';
-    $subaccounts = $db->query("SELECT * FROM subaccounts");
+    $subaccounts = $mysqli->query("SELECT * FROM budget_manager.subaccounts");
 
     while ($subaccount = $subaccounts->fetch_assoc()) {
         echo "<section>";
@@ -21,7 +21,7 @@
 
         // Fetch transactions for each subaccount
         $subaccount_id = $subaccount['id'];
-        $transactions = $db->query("SELECT * FROM transactions WHERE subaccount_id = $subaccount_id ORDER BY timestamp DESC");
+        $transactions = $mysqli->query("SELECT * FROM budget_manager.transactions WHERE subaccount_id = $subaccount_id ORDER BY timestamp DESC");
         
         echo "<ul>";
         while ($transaction = $transactions->fetch_assoc()) {
